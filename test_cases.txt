@@ -1,0 +1,261 @@
+================================================================================
+
+           SMART BUS TICKET BOOKING SYSTEM - COMPREHENSIVE TEST CASES
+
+================================================================================
+
+
+
+--------------------------------------------------------------------------------
+
+TEST CASE 1: Standard Ticket Booking (No Discount)
+
+--------------------------------------------------------------------------------
+
+Description: Verify successful booking for 2 seats on Route R101.
+
+Menu Option : 3
+
+
+
+Input Steps:
+
+  1. Enter choice: 3
+
+  2. Passenger Name: Ali Khan
+
+  3. Passenger Age: 25
+
+  4. Route ID: R101
+
+  5. Number of seats: 2
+
+
+
+Expected Output:
+
+  - Subtotal: Rs. 2400 (1200 * 2)
+
+  - Discount: None
+
+  - Final Total Fare: Rs. 2400
+
+  - Booking ID Issued: B1001
+
+  - Route R101 Available Seats decremented from 40 to 38.
+
+
+
+--------------------------------------------------------------------------------
+
+TEST CASE 2: Group Booking with 10% Discount (4+ Seats)
+
+--------------------------------------------------------------------------------
+
+Description: Verify group discount trigger when booking 4 seats on Route R104.
+
+Menu Option : 3
+
+
+
+Input Steps:
+
+  1. Enter choice: 3
+
+  2. Passenger Name: Sara Ahmed
+
+  3. Passenger Age: 30
+
+  4. Route ID: R104
+
+  5. Number of seats: 4
+
+
+
+Expected Output:
+
+  - Subtotal: Rs. 20000 (5000 * 4)
+
+  - Discount (10%): -Rs. 2000.0
+
+  - Final Total Fare: Rs. 18000.0
+
+  - Message Printed: "🎁 Promo Applied: 10% Group Discount for booking 4 seats!"
+
+  - Booking ID Issued: B1002
+
+  - Route R104 Available Seats decremented from 45 to 41.
+
+
+
+--------------------------------------------------------------------------------
+
+TEST CASE 3: Booking Validation - Exceeding Available Capacity
+
+--------------------------------------------------------------------------------
+
+Description: Attempt to book more seats than available on Route R103.
+
+Menu Option : 3
+
+
+
+Input Steps:
+
+  1. Enter choice: 3
+
+  2. Passenger Name: Bilal Sheikh
+
+  3. Passenger Age: 22
+
+  4. Route ID: R103
+
+  5. Number of seats: 50
+
+
+
+Expected Output:
+
+  - Error Message: "Error: Requested seats (50) exceed available seats (32). Booking rejected."
+
+  - Transaction aborted; no booking record created.
+
+
+
+--------------------------------------------------------------------------------
+
+TEST CASE 4: Search Booking by Passenger Name (Optional Enhancement)
+
+--------------------------------------------------------------------------------
+
+Description: Search for an existing passenger booking record using name substring.
+
+Menu Option : 2
+
+
+
+Pre-requisite: Test Case 1 completed (Ali Khan booked under B1001).
+
+
+
+Input Steps:
+
+  1. Enter choice: 2
+
+  2. Search term: Ali
+
+
+
+Expected Output:
+
+  - Matches found under PASSENGER BOOKING SEARCH:
+
+    "[Booking Match] ID: B1001 | Passenger: Ali Khan | Route: R101 | Seats: 2 | Status: Confirmed"
+
+
+
+--------------------------------------------------------------------------------
+
+TEST CASE 5: Booking Cancellation & Seat Restoration
+
+--------------------------------------------------------------------------------
+
+Description: Cancel booking B1001 and ensure seats return to Route R101.
+
+Menu Option : 5
+
+
+
+Pre-requisite: Test Case 1 completed (Ali Khan booked 2 seats on R101).
+
+
+
+Input Steps:
+
+  1. Enter choice: 5
+
+  2. Enter Booking ID to cancel: B1001
+
+
+
+Expected Output:
+
+  - Confirmation Message: "Booking B1001 has been successfully cancelled."
+
+  - "Seats restored to route: 2"
+
+  - "Route R101 available seats now: 40"
+
+
+
+--------------------------------------------------------------------------------
+
+TEST CASE 6: Duplicate Cancellation Prevention
+
+--------------------------------------------------------------------------------
+
+Description: Attempt to cancel an already cancelled booking (B1001).
+
+Menu Option : 5
+
+
+
+Pre-requisite: Test Case 5 completed.
+
+
+
+Input Steps:
+
+  1. Enter choice: 5
+
+  2. Enter Booking ID to cancel: B1001
+
+
+
+Expected Output:
+
+  - Error Message: "Error: Booking B1001 is already cancelled. Cannot restore seats a second time."
+
+
+
+--------------------------------------------------------------------------------
+
+TEST CASE 7: Generating Comprehensive Report & Popular Route Analytics
+
+--------------------------------------------------------------------------------
+
+Description: Check financial summary and analytics calculation.
+
+Menu Option : 7
+
+
+
+Pre-requisites: 
+
+  - Test Case 1 (B1001, Cancelled)
+
+  - Test Case 2 (B1002, Confirmed, Rs. 18000.0, 4 seats on R104)
+
+
+
+Input Steps:
+
+  1. Enter choice: 7
+
+
+
+Expected Output:
+
+  - Total booking records created : 2
+
+  - Confirmed bookings active     : 1
+
+  - Cancelled bookings            : 1
+
+  - Total seats currently reserved: 4
+
+  - Total confirmed revenue       : Rs. 18000.0
+
+  - Most Popular Route            : R104 (Karachi -> Lahore) (4 seats booked)
+
+  - Section showing active bookings grouped under Route R104.
